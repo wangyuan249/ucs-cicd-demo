@@ -1,5 +1,5 @@
 # UCS Demo
-name: UCS CICD Demo For Phoniex Store Web Service
+name: UCS CICD Demo For Phoniex Store Web Service - vote
 on: [push]
 jobs:
   build:
