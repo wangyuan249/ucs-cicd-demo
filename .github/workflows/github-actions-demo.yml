@@ -13,7 +13,7 @@ jobs:
     - name: Install Dependencies
       run: |
         yarn install
-    - run: ls -a vote
+    - run: cd vote && ls -a
     - name: Build
       run: | 
         docker build -f vote/Dockerfile -t ucs-vote:latest .
