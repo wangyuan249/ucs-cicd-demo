@@ -1,4 +1,4 @@
-FROM java:openjdk-8-jdk-alpine
+FROM --platform=$BUILDPLATFORM maven:3.8.5-eclipse-temurin-17 AS build
 
 RUN MAVEN_VERSION=3.3.3 \
  && cd /usr/share \
