@@ -3,6 +3,6 @@ FROM --platform=$BUILDPLATFORM maven:3.8.5-eclipse-temurin-17 AS build
 WORKDIR /code
 
 # Adding target
-ADD target /code/target
+ADD worker/target /code/target
 
 CMD ["java", "-jar", "target/worker-jar-with-dependencies.jar"]
