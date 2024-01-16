@@ -52,7 +52,7 @@ jobs:
       run: | 
         docker build -f worker/Dockerfile.j -t worker:latest .     
     - run: |
-        sudo docker tag worker:latest swr.ap-southeast-3.myhuaweicloud.com/ucs/worker:latest
+        sudo docker tag worker:latest swr.ap-southeast-3.myhuaweicloud.com/ucs/worker:$IMAGE_TAG
     - run: |
         sudo $DOCKER_LOGIN
     - run: |
