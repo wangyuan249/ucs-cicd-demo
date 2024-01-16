@@ -13,4 +13,4 @@ patches:
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: swr.cn-south-1.myhuaweicloud.com/ucs-dev-org/vote:20230816.01
+      value: swr.ap-southeast-3.myhuaweicloud.com/ucs/vote:2024.1.16.05
