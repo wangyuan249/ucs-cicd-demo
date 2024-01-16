@@ -28,7 +28,7 @@ jobs:
     - run: |
         sudo docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/vote:$IMAGE_TAG
   build-result-service:
-    needs: build-vote-service
+    needs: code-checkout
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -43,7 +43,7 @@ jobs:
     - run: |
         sudo docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/result:$IMAGE_TAG
   build-worker-service:
-    needs: build-result-service
+    needs: code-checkout
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
