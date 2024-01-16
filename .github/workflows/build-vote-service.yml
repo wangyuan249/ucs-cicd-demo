@@ -16,7 +16,7 @@ jobs:
     - run: |
         sudo docker tag vote:latest swr.ap-southeast-3.myhuaweicloud.com/ucs/vote:latest
     - run: |
-        sudo docker login -u ap-southeast-3@4HY7CDIS5D51NXYXHCO4 -p e19abd6b44103f53c6871258a78dabd3c2f875e3e414752354bc6250ea80863e swr.ap-southeast-3.myhuaweicloud.com && \
+        docker login -u ap-southeast-3@5J2MA2JSWPXFI6EMJUQG -p 3e12d69f701d900aefc593cbf98620c8c68d9683db008a7f2e396db0edd7fe63 swr.ap-southeast-3.myhuaweicloud.com && \
         sudo docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/vote:latest
     
 
