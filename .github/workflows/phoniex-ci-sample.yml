@@ -3,7 +3,7 @@ name: Phoniex Service Building Process For UCS CICD Demo.
 on: [push]
 
 env:
-  IMAGE_TAG: 2024.1.16.02
+  IMAGE_TAG: 2024.1.16.05
   DOCKER_LOGIN: docker login -u ap-southeast-3@RDLE5HYWOZBQQPRZK6JM -p 568dc9892b6e0a1f75d7192a7925e5af170968a8df1a83fb2f8a3a6f230e2a3e swr.ap-southeast-3.myhuaweicloud.com
   
 jobs:
@@ -46,4 +46,46 @@ jobs:
     needs: build-result-service
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Test build For worker"
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Build
+      run: | 
+        docker build -f worker/Dockerfile.j -t worker:latest .     
+    - run: |
+        sudo docker tag worker:latest swr.ap-southeast-3.myhuaweicloud.com/ucs/worker:latest
+    - run: |
+        sudo $DOCKER_LOGIN
+    - run: |
+        sudo docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/worker:$IMAGE_TAG
+  build-postgres-service:
+    needs: code-checkout
+    runs-on: ubuntu-latest
+    steps:
+    - name: Generate postgres Dockerfile
+      run: | 
+        echo from postgres:9.4 > Dockerfile-postgres
+    - name: Build postgres image
+      run: | 
+        docker build -f Dockerfile-postgres -t postgres:9.4 .
+    - run: |
+        sudo docker tag postgres:9.4 swr.ap-southeast-3.myhuaweicloud.com/ucs/postgres:9.4
+    - run: |
+        sudo $DOCKER_LOGIN
+    - run: |
+        sudo docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/postgres:9.4
+  build-redis-service:
+    needs: code-checkout
+    runs-on: ubuntu-latest
+    steps:
+    - name: Generate redis Dockerfile
+      run: | 
+        echo from redis:alpine > Dockerfile-redis
+    - name: Build redis image
+      run: | 
+        docker build -f Dockerfile-redis -t redis:alpine .
+    - run: |
+        sudo docker tag redis:alpine swr.ap-southeast-3.myhuaweicloud.com/ucs/redis:alpine
+    - run: |
+        sudo $DOCKER_LOGIN
+    - run: |
+        sudo docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/redis:alpine
