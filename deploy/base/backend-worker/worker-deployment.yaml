@@ -20,7 +20,7 @@ spec:
         io.kompose.service: worker
     spec:
       containers:
-      - image: swr.cn-south-1.myhuaweicloud.com/ucs-dev-org/worker:20230705.1
+      - image: swr.ap-southeast-3.myhuaweicloud.com/ucs/worker:2024.1.16.05
         name: worker
       imagePullSecrets:
       - name: default-secret
