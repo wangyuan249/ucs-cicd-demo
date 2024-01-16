@@ -10,7 +10,6 @@ jobs:
     - run: echo "Now, Building image for Worker service. "
     - name: Checkout
       uses: actions/checkout@v4
-    - run: docker search java
     - name: Build
       run: | 
         docker build -f worker/Dockerfile.j -t worker:latest .     
