@@ -10,8 +10,8 @@ jobs:
     - run: echo "Now, Building image for Worker service. "
     - name: Checkout
       uses: actions/checkout@v4
-    - name: Build
-      run: | 
-        docker build -f worker/Dockerfile.j -t worker:latest .     
-    - run: |
-        sudo docker tag worker:latest swr.ap-southeast-3.myhuaweicloud.com/ucs/worker:latest
+    # - name: Build
+    #   run: | 
+    #     docker build -f worker/Dockerfile.j -t worker:latest .     
+    # - run: |
+    #     sudo docker tag worker:latest swr.ap-southeast-3.myhuaweicloud.com/ucs/worker:latest
