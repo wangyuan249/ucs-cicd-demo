@@ -1,17 +1,17 @@
-# UCS Demo
-name: Result Service Building Process For UCS CICD Demo. 
-on: [push]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-    - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-    - run: echo "Now, Building image for result service. "
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Build
-      run: | 
-        docker build -f result/Dockerfile -t result:latest . 
-    - run: |
-        sudo docker tag result:latest swr.ap-southeast-3.myhuaweicloud.com/ucs/result:latest
+# # UCS Demo
+# name: Result Service Building Process For UCS CICD Demo. 
+# on: [push]
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+#     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+#     - run: echo "Now, Building image for result service. "
+#     - name: Checkout
+#       uses: actions/checkout@v4
+#     - name: Build
+#       run: | 
+#         docker build -f result/Dockerfile -t result:latest . 
+#     - run: |
+#         sudo docker tag result:latest swr.ap-southeast-3.myhuaweicloud.com/ucs/result:latest
