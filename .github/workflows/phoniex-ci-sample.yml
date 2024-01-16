@@ -3,15 +3,19 @@ name: Phoniex Service Building Process For UCS CICD Demo.
 on: [push]
 
 env:
-  IMAGE_TAG: 2024.1.16.01
-  DOCKER_LOGIN: docker login -u ap-southeast-3@5J2MA2JSWPXFI6EMJUQG -p 3e12d69f701d900aefc593cbf98620c8c68d9683db008a7f2e396db0edd7fe63 swr.ap-southeast-3.myhuaweicloud.com
+  IMAGE_TAG: 2024.1.16.02
+  DOCKER_LOGIN: docker login -u ap-southeast-3@RDLE5HYWOZBQQPRZK6JM -p 568dc9892b6e0a1f75d7192a7925e5af170968a8df1a83fb2f8a3a6f230e2a3e swr.ap-southeast-3.myhuaweicloud.com
   
 jobs:
-  build-vote-service:
+  code-checkout:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+  build-vote-service:
+    needs: code-checkout
+    runs-on: ubuntu-latest
+    steps:
     - name: Build Image
       run: | 
         docker build -f vote/Dockerfile -t vote:latest .     
@@ -22,12 +26,20 @@ jobs:
     - run: |
         sudo docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/vote:$IMAGE_TAG
   build-result-service:
-    needs: build-vote-service
+    needs: code-checkout
     runs-on: ubuntu-latest
     steps:
-      - run: echo "test 2"
+    - name: Build Image
+      run: | 
+        docker build -f result/Dockerfile -t result:latest . 
+    - run: |
+        sudo docker tag result:latest swr.ap-southeast-3.myhuaweicloud.com/ucs/result:$IMAGE_TAG
+    - run: |
+        sudo $DOCKER_LOGIN
+    - run: |
+        sudo docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/result:$IMAGE_TAG
   build-worker-service:
-    needs: build-result-service
+    needs: code-checkout
     runs-on: ubuntu-latest
     steps:
-      - run: echo "test 3"
+      - run: echo "Test build For worker"
