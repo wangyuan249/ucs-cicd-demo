@@ -16,6 +16,8 @@ jobs:
     needs: code-checkout
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v4
     - name: Build Image
       run: | 
         docker build -f vote/Dockerfile -t vote:latest .     
@@ -26,7 +28,7 @@ jobs:
     - run: |
         sudo docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/vote:$IMAGE_TAG
   build-result-service:
-    needs: code-checkout
+    needs: build-vote-service
     runs-on: ubuntu-latest
     steps:
     - name: Build Image
@@ -39,7 +41,7 @@ jobs:
     - run: |
         sudo docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/result:$IMAGE_TAG
   build-worker-service:
-    needs: code-checkout
+    needs: build-result-service
     runs-on: ubuntu-latest
     steps:
       - run: echo "Test build For worker"
