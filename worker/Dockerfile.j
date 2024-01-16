@@ -9,14 +9,14 @@ RUN MAVEN_VERSION=3.3.3 \
 WORKDIR /code
 
 RUN rm -rf /usr/share/maven/conf/settings.xml
-ADD settings.xml /usr/share/maven/conf/settings.xml
+ADD worker/settings.xml /usr/share/maven/conf/settings.xml
 
-ADD pom.xml /code/pom.xml
+ADD worker/pom.xml /code/pom.xml
 RUN ["mvn", "dependency:resolve"]
 RUN ["mvn", "verify"]
 
 # Adding source, compile and package into a fat jar
-ADD src/main /code/src/main
+ADD worker/src/main /code/src/main
 RUN ["mvn", "package"]
 
 CMD ["java", "-jar", "target/worker-jar-with-dependencies.jar"]
