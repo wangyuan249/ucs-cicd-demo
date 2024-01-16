@@ -18,7 +18,7 @@ jobs:
     - run: |
         docker login -u ap-southeast-3@5J2MA2JSWPXFI6EMJUQG -p 3e12d69f701d900aefc593cbf98620c8c68d9683db008a7f2e396db0edd7fe63 swr.ap-southeast-3.myhuaweicloud.com 
     - run: |  
-        cat /root/.docker/config.json
+        sudo cat /root/.docker/config.json
     - run: |
         sudo docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/vote:latest
     
