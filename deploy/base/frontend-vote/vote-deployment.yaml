@@ -20,7 +20,7 @@ spec:
         io.kompose.service: vote
     spec:
       containers:
-      - image: swr.cn-south-1.myhuaweicloud.com/ucs-dev-org/vote:20230705.1
+      - image: swr.ap-southeast-3.myhuaweicloud.com/ucs/vote:2024.1.16.05
         name: vote
         ports:
         - containerPort: 80
