@@ -1,5 +1,5 @@
 # UCS Demo
-name: Result Service Building Process For UCS CICD Demo.
+name: Vote Service Building Process For UCS CICD Demo.
 on: [push]
 jobs:
   build:
