@@ -15,7 +15,7 @@ jobs:
         docker build -f result/Dockerfile -t result:latest . 
     - run: |
         sudo docker tag result:latest swr.ap-southeast-3.myhuaweicloud.com/ucs/result:latest
-    - run: |
-        sudo docker login -u ap-southeast-3@4HY7CDIS5D51NXYXHCO4 -p e19abd6b44103f53c6871258a78dabd3c2f875e3e414752354bc6250ea80863e swr.ap-southeast-3.myhuaweicloud.com && docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/result:latest
+    # - run: |
+    #     sudo docker login -u ap-southeast-3@4HY7CDIS5D51NXYXHCO4 -p e19abd6b44103f53c6871258a78dabd3c2f875e3e414752354bc6250ea80863e swr.ap-southeast-3.myhuaweicloud.com && docker push swr.ap-southeast-3.myhuaweicloud.com/ucs/result:latest
     
 
